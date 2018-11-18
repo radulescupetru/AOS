@@ -7,10 +7,13 @@ import javax.persistence.Id;
 @Entity
 public class Person {
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", email=" + email + "]";
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/radulescupetru/AOS.git
 	@Id
 	@GeneratedValue
 	private int Id;

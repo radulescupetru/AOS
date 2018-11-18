@@ -19,9 +19,15 @@ public class AccountBl {
 		}
 	}
 
+<<<<<<< HEAD
 	public void update(Person person,Person newPerson) {
 		if (person != null) {
 			accountDal.update(person,newPerson);
+=======
+	public void update(Person person) {
+		if (person != null) {
+			accountDal.update(person);
+>>>>>>> branch 'master' of https://github.com/radulescupetru/AOS.git
 		}
 	}
 

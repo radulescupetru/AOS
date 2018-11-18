@@ -53,12 +53,20 @@ public class Aoshw2Application {
     }
     
     @RequestMapping(value="/update",method=RequestMethod.GET)
+<<<<<<< HEAD
     public String update(@RequestParam("oldName") String oldName ,@RequestParam("oldEmail") String oldEmail,@RequestParam("name") String name,@RequestParam("email") String email ) {
     	AccountBl accountBl = new AccountBl();
     	Person person = new Person(oldName,oldEmail);
     	Person newPerson = new Person(name,email);
         accountBl.update(person,newPerson);
         return "Old person: "+person.toString()+ " is now : "+newPerson.toString();
+=======
+    public String update(@RequestParam("name") String name ,@RequestParam("email") String email ) {
+    	AccountBl accountBl = new AccountBl();
+    	Person person = new Person(name,email);
+        accountBl.update(person);
+        return person.toString();
+>>>>>>> branch 'master' of https://github.com/radulescupetru/AOS.git
     }
     
     @RequestMapping(value="/delete",method=RequestMethod.GET)

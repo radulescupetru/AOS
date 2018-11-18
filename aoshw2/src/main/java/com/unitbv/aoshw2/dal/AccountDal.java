@@ -35,6 +35,7 @@ public class AccountDal implements IAccount {
 			emf.close();
 		}
 	}
+<<<<<<< HEAD
 
 	@Override
 	public void insert(Person person) {
@@ -116,4 +117,76 @@ public class AccountDal implements IAccount {
 		}
 		return null;
 	}
+=======
+	
+	@Override
+	public void insert(Person person) {
+		try {
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			person = em.merge(person);
+			em.getTransaction().commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			em.close();
+		}
+		
+	}
+
+	@Override
+	public ArrayList<Person> getAll() {
+		ArrayList<Person> people = new ArrayList<Person>();
+		try {
+			em = emf.createEntityManager();
+			CriteriaBuilder cb = em.getCriteriaBuilder();
+			CriteriaQuery<Person> cq = cb.createQuery(Person.class);
+			Root<Person> rootEntry = cq.from(Person.class);
+			CriteriaQuery<Person> all = cq.select(rootEntry);
+			TypedQuery<Person> allQuery = em.createQuery(all);
+			people.addAll(allQuery.getResultList());
+			return people;
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		} finally {
+			em.close();
+		}
+	}
+
+	@Override
+	public void update(Person person) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Person person) {
+		try {
+			
+			Person found = findPerson(person);
+			em = emf.createEntityManager();
+			em.merge(found);
+			em.getTransaction().begin();
+			em.remove(found);
+			em.getTransaction().commit();
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			em.close();
+		}
+	}
+		
+	private  Person findPerson(Person person) {
+	ArrayList<Person>all = getAll();
+	for (Person p : all) {
+		if(p.getName().equals(person.getName())&& p.getEmail().equals(person.getEmail())) {
+			person.setId(p.getId());
+			return person;
+		}
+	}
+	return null;
+}
+>>>>>>> branch 'master' of https://github.com/radulescupetru/AOS.git
 }
